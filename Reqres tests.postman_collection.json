@@ -15,7 +15,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"//проверяем, что имя \"sirgay\"\r",
+									"//проверяем, что имя \"sergey\"\r",
 									"var jsonData = pm.response.json();\r",
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -34,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"sergay\",\"job\":\"gigatester\"}",
+							"raw": "{\"name\":\"sergey\",\"job\":\"tester\"}",
 							"options": {
 								"raw": {
 									"language": "json"
