@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3d869fc7-5111-4bcb-a984-d814033f0bd1",
-		"name": "Второй тест (не валидный)",
+		"_postman_id": "5f7a0d9e-5f37-4029-bd1a-57bdb9f78c0e",
+		"name": "Создание и удаление питомца",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -54,19 +54,15 @@
 			"response": []
 		},
 		{
-			"name": "Меняем имя и статус у питомца",
+			"name": "Получаем питомца по ID",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.test(\"Проверка значения\", function () {\r",
-							"    pm.expect(jsonData.message).to.eql(\"something bad happened\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 500\", function () {\r",
-							"    pm.response.to.have.status(500);\r",
+							"pm.test(\"Проверка статуса\", function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"available\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -74,25 +70,54 @@
 				}
 			],
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"id\": \"kukis\",\r\n  \"name\": \"gari\",\r\n  \"status\": \"uehal\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{HostURL}}/v2/pet",
+					"raw": "{{HostURL}}/v2/pet/{{Pet_Id}}",
 					"host": [
 						"{{HostURL}}"
 					],
 					"path": [
 						"v2",
-						"pet"
+						"pet",
+						"{{Pet_Id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление питомца",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка значения\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"123\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HostURL}}/v2/pet/{{Pet_Id}}",
+					"host": [
+						"{{HostURL}}"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{Pet_Id}}"
 					]
 				}
 			},
@@ -120,10 +145,6 @@
 		}
 	],
 	"variable": [
-		{
-			"key": "variable_key",
-			"value": ""
-		},
 		{
 			"key": "Pet_Id",
 			"value": ""

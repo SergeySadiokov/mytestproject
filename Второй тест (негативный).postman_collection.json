@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "e2e80b0a-cd6c-42e2-a6fb-e49afecc68cd",
-		"name": "Второй тест (валидный)",
+		"_postman_id": "3d869fc7-5111-4bcb-a984-d814033f0bd1",
+		"name": "Второй тест (негативный)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -62,11 +62,11 @@
 						"exec": [
 							"var jsonData = pm.response.json();\r",
 							"pm.test(\"Проверка значения\", function () {\r",
-							"    pm.expect(jsonData.status).to.eql(\"v_taverne\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"something bad happened\");\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": {{id}},\r\n  \"name\": \"gnarius\",\r\n  \"status\": \"v_taverne\"\r\n}",
+					"raw": "{\r\n  \"id\": \"kukis\",\r\n  \"name\": \"gari\",\r\n  \"status\": \"uehal\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
